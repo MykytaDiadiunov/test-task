@@ -1,0 +1,46 @@
+services:
+  frontend:
+    env_file:
+      - .env
+    build: 
+      dockerfile: ./Dockerfile
+      context: ./frontend
+      args:
+        - FRONTEND_PORT=${FRONTEND_PORT}
+    command: npm run dev
+    volumes:
+      - ./frontend:/app
+    ports: 
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+  backend:
+    env_file:
+      - .env
+    build: 
+      dockerfile: ./Dockerfile
+      context: ./backend
+      args:
+        - BACKEND_PORT=${BACKEND_PORT}
+        - POETRY_VERSION=${POETRY_VERSION}
+    command: python /app/manage.py runserver 0.0.0.0:${BACKEND_PORT}
+    volumes:
+      - ./backend:/app
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+    depends_on:
+      - db
+  db:
+    env_file:
+      - .env
+    image: postgres:${POSTGRESQL_VERSION}
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+
+
+volumes:
+  postgres_data:

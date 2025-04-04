@@ -1,0 +1,18 @@
+main {
+    min-height: calc(100vh - 56px - 44px);
+    background-color: rgba(22, 22, 26, 0.8);
+}
+
+footer {
+    background-color: #212529;
+    padding: 10px;
+}
+
+.navbar__wrapper {
+    display: flex;
+}
+
+.ss{ 
+    margin: 0px 5px;
+    font-size: 20px;
+}
