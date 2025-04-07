@@ -84,7 +84,7 @@ function CreateBookPage() {
                     <option value="0">
                     </option>
                     {authors.map((author: Author) => (
-                      <option value={author.id} style={{color: "#000"}}>
+                      <option value={author.id} style={{color: "#000"}} key={author.id}>
                         {author.name}
                       </option>
                     ))}

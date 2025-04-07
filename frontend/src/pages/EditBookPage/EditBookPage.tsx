@@ -15,7 +15,6 @@ function EditBookPage() {
 
   const [authors, setAuthors] = useState<Author[]>([])
 
-  //Form values
   const [name, setName] = useState<string>("")
   const [description, setDescription] = useState<string>("")
   const [image, setImage] = useState<File | null>(null)
@@ -97,7 +96,7 @@ function EditBookPage() {
                 <option value="0">
                 </option>
                 {authors.map((author: Author) => (
-                  <option value={author.id} style={{color: "#000"}}>
+                  <option value={author.id} style={{color: "#000"}} key={author.id}>
                     {author.name}
                   </option>
                 ))}

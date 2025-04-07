@@ -14,7 +14,6 @@ function EditAuthorPage() {
 
   const authorId = useParams().id
 
-  //Form values
   const [name, setName] = useState<string>("")
   const [birthday, setBirthday] = useState<string>("")
 
@@ -50,7 +49,7 @@ function EditAuthorPage() {
                 id="name"
                 name="name"
                 type="text"
-                value={name}
+                defaultValue={name}
                 onChange={(e) => {setName(e.target.value)}}
               />
               <Label for="birthday">

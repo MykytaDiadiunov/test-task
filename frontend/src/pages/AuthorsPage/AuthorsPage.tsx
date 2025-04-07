@@ -2,7 +2,7 @@ import BaseLayout from "@/layouts/BaseLayout/BaseLayout"
 import ProtectedRoute from "@/layouts/ProtectedRoute/ProtectedRoute"
 import { Author } from "@/models"
 import { requestService } from "@/services"
-import { MouseEventHandler, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { CardBody, Card, CardTitle, Button } from "reactstrap"
 
