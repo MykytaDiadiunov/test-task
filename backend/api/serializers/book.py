@@ -5,7 +5,7 @@ from api.serializers.author import AuthorSerializer
 
 
 class BookSerializer(serializers.ModelSerializer):
-    author_object = AuthorSerializer(read_only=True)
+    author_object = AuthorSerializer(read_only=True, source="author")
 
     class Meta:
         model = Book

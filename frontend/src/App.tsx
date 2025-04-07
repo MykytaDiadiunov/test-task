@@ -10,12 +10,10 @@ function App() {
 
   const populateAll = async () => {
     await userStore.populate()
-    console.log("GGWP")
   }
 
   useEffect(()=> {
     populateAll().then(() => {
-      console.log("OMEGA LOH")
       setIsLoading(false)
     })
   }, [])
@@ -30,7 +28,7 @@ function App() {
     <>
       {!isLoading ? (
         <Routes>{routeComponents}</Routes>
-      ): (<>Loading</>)}
+      ): (<><div style={{color: "#000"}}>Loading...</div></>)}
     </>
   )
 }

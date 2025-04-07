@@ -3,3 +3,8 @@ export interface Author {
     name: string,
     birthday: string
 }
+
+export interface CreateAuthor {
+    name: string,
+    birthday: string
+}
