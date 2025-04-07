@@ -6,6 +6,7 @@ const requests = requestService();
 const useTokenService = tokenService();
 
 interface UserStore {
+  isPopulated: boolean
   user: User | null
   setUser: (value: User | null) => void
   populate: () => Promise<void>
@@ -15,6 +16,7 @@ interface UserStore {
 }
 
 const useUserStore = create<UserStore>((set, get) => ({
+  isPopulated: false,
   user: null,
 
   setUser: (value: User | null) => {
@@ -24,7 +26,7 @@ const useUserStore = create<UserStore>((set, get) => ({
   populate: async () => {
     try {
       const response = await requests.getCurrentUser();
-      get().setUser(response.user as User);
+      get().setUser(response as User);
     } catch {
       if (await useTokenService.get()) {
         useTokenService.destroy();
@@ -36,7 +38,7 @@ const useUserStore = create<UserStore>((set, get) => ({
 
   login: async (loginBody: UserLoginBody) => {
     const response = await requests.login(loginBody);
-    const token = response.token;
+    const token = response.auth_token;
 
     useTokenService.set(token);
     await get().populate();
@@ -44,7 +46,7 @@ const useUserStore = create<UserStore>((set, get) => ({
 
   register: async (registerBody: UserRegisterBody) => {
     const response = await requests.register(registerBody)
-    const token = response.token
+    const token = response.auth_token
 
     useTokenService.set(token)
     await get().populate()

@@ -1,14 +1,23 @@
-import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { routes } from './router'
-import { useEffect } from 'react'
-import { useUserStore } from './store'
+import { Route, Routes } from 'react-router-dom'
+import { routes } from '@/router'
+import { useEffect, useState } from 'react'
+import { useUserStore } from '@/store'
 
 function App() {
   const userStore = useUserStore()
+  const [isLoading, setIsLoading] = useState(true)
+
+  const populateAll = async () => {
+    await userStore.populate()
+    console.log("GGWP")
+  }
 
   useEffect(()=> {
-    userStore.populate()
+    populateAll().then(() => {
+      console.log("OMEGA LOH")
+      setIsLoading(false)
+    })
   }, [])
 
   const routeComponents = Object.values(routes).map(
@@ -19,7 +28,9 @@ function App() {
 
   return (
     <>
-      <Routes>{routeComponents}</Routes>
+      {!isLoading ? (
+        <Routes>{routeComponents}</Routes>
+      ): (<>Loading</>)}
     </>
   )
 }

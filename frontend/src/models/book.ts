@@ -1,4 +1,4 @@
-import { Author } from "./author";
+import { Author } from "@/models";
 
 export interface BookFromListRespose {
     id: number,

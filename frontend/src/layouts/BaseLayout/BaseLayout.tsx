@@ -1,15 +1,26 @@
-import { ReactNode } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { useLocation } from "react-router-dom";
-import { Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
+import { Button, Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 import { routes } from '../../router/index'
 import './BaseLayout.css'
+import { useUserStore } from "@/store";
 
 type LayoutProps = {
   children: ReactNode;
 }
 
 function BaseLayout({ children }: LayoutProps) {
-  const isLoginPage: boolean = useLocation().pathname == routes.login.path
+  const userStore = useUserStore()
+
+  const isAuthPage: boolean = 
+  useLocation().pathname == routes.login.path || 
+  useLocation().pathname == routes.register.path
+
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>()
+
+  useEffect(() => {
+    setIsAuthenticated(userStore.user !== null)
+  }, [userStore.user])
 
   return(
     <>
@@ -19,11 +30,16 @@ function BaseLayout({ children }: LayoutProps) {
         </NavbarBrand>
         <Nav navbar>
           <div className="navbar__wrapper">
-          {!isLoginPage && <NavItem>
-            <NavLink href={routes.login.path}>
-              Login | Ragistration
-            </NavLink>
-          </NavItem>}
+            {isAuthPage || !isAuthenticated && 
+              <NavItem>
+                <NavLink href={routes.login.path}>
+                  Login | Ragistration
+                </NavLink>
+              </NavItem>
+            }
+            { isAuthenticated &&
+              <Button onClick={userStore.logout}>Logout</Button>
+            }
           </div>
         </Nav>
       </Navbar>

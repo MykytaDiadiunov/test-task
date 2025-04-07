@@ -7,12 +7,11 @@ import type {
 } from 'axios'
 import axios from 'axios'
 
-import { tokenService } from '../services'
+import { tokenService } from '@/services'
 
-export const apiService = () => {
+export const apiService = (apiUrl = "http://127.0.0.1:8000/api/v1") => {
 
 const authToken = tokenService()
-const apiUrl: string = 'http://127.0.0.1:8000/api/v1'
 
 const instance: AxiosInstance = axios.create({
   baseURL: apiUrl,

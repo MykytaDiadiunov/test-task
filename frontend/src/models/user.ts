@@ -1,12 +1,9 @@
-export interface CurrentUser {
-    user: User,
-    token: string
-}
-
 export interface User {
+    user: User
     id: number,
     username: string,
     email: string
+    auth_token: string
 }
 
 export interface UserRegisterBody {

@@ -1,5 +1,5 @@
-import { storageInstance } from "../services"
-import { TOKEN_STORAGE_NAME } from "../constants";
+import { storageInstance } from "@/services"
+import { TOKEN_STORAGE_NAME } from "@/constants";
 
 export const tokenService = () => {
 
@@ -12,7 +12,7 @@ export const tokenService = () => {
     }
   }
 
-  async function get() {
+  async function get(): Promise<string | null> {
     return storageInstance.getItem(TOKEN_STORAGE_NAME);
   }
 
