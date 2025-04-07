@@ -1,5 +1,6 @@
 ## .env
 
+```
 POETRY_VERSION = "1.8.4"
 POSTGRESQL_VERSION = "17-alpine3.20"
 
@@ -14,3 +15,4 @@ DB_HOST = "db"
 DB_PORT = "5432"
 BACKEND_PORT = "8000"
 FRONTEND_PORT = "5000"
+```
