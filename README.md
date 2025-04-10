@@ -16,3 +16,25 @@ DB_PORT = "5432"
 BACKEND_PORT = "8000"
 FRONTEND_PORT = "5000"
 ```
+## interface imgs
+
+### Home page
+<img src="https://github.com/MykytaDiadiunov/test-task/blob/main/interface-imgs/HomePage.png" />
+
+### Authors page
+<img src="https://github.com/MykytaDiadiunov/test-task/blob/main/interface-imgs/AuthorsPage.png" />
+
+### Create book page
+<img src="https://github.com/MykytaDiadiunov/test-task/blob/main/interface-imgs/CreateBookPage.png" />
+
+### Create author page
+<img src="https://github.com/MykytaDiadiunov/test-task/blob/main/interface-imgs/CreateAuthorPage.png" />
+
+### Book detail view
+<img src="https://github.com/MykytaDiadiunov/test-task/blob/main/interface-imgs/BookDetailView.png" />
+
+### Login page
+<img src="https://github.com/MykytaDiadiunov/test-task/blob/main/interface-imgs/LoginPage.png" />
+
+### Register page
+<img src="https://github.com/MykytaDiadiunov/test-task/blob/main/interface-imgs/RegisterPage.png" />
