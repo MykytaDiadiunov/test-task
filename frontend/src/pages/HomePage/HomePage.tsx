@@ -4,9 +4,13 @@ import BookFilter from '@/components/HomePageComponents/BookItem/BookFilter'
 import { useEffect, useState } from 'react'
 import { requestService } from '@/services'
 import { BookFromListRespose } from '@/models'
+import { Button } from 'reactstrap'
+import { useNavigate } from 'react-router-dom'
+import { routes } from '@/router'
 
 function MainPage() {
   const requests = requestService()
+  const navigate = useNavigate()
 
   const [books, setBooks] = useState<BookFromListRespose[]>([])
 
@@ -22,6 +26,10 @@ function MainPage() {
     })
   }
 
+  function addNewBookHandler() {
+    navigate(routes.createBook.path)
+  } 
+
   return (
     <>
       <BaseLayout>
@@ -33,14 +41,23 @@ function MainPage() {
             <BookFilter filterChange={updateBooksByAuthors}/>
           </div>
           <div 
-            className="d-flex flex-wrap justify-content-center align-items-center gap-3 py-3"
+            className="py-1"
             style={{ width: "90%" }}
           >
-            {books.map((book: BookFromListRespose) => (
-              <div>
-                <BookItem  key={book.id} book={book}/>
-              </div>
-            ))}
+            <Button 
+              style={{marginLeft: "5px", marginBottom: "10px"}}
+              color="info" 
+              onClick={addNewBookHandler}
+            >
+              Add new book
+            </Button>
+            <div className="d-flex flex-wrap justify-content-center align-items-center gap-3">
+              {books.map((book: BookFromListRespose) => (
+                <div>
+                  <BookItem  key={book.id} book={book}/>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </BaseLayout>

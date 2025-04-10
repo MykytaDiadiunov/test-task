@@ -1,6 +1,7 @@
 import BaseLayout from "@/layouts/BaseLayout/BaseLayout"
 import ProtectedRoute from "@/layouts/ProtectedRoute/ProtectedRoute"
 import { Author } from "@/models"
+import { routes } from "@/router"
 import { requestService } from "@/services"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -8,7 +9,7 @@ import { CardBody, Card, CardTitle, Button } from "reactstrap"
 
 function AuthorsPage() {
   const requests = requestService()
-  const navigator = useNavigate()
+  const navigate = useNavigate()
 
   const [authors, setAuthors] = useState<Author[]>([])
 
@@ -19,7 +20,7 @@ function AuthorsPage() {
   }, [])
 
   async function goToEditPageHandler(authorId: number) {
-    navigator(`/edit/author/${authorId}/`)
+    navigate(`/edit/author/${authorId}/`)
   }
 
   async function deleteHandler(authorId: number) {  
@@ -29,10 +30,21 @@ function AuthorsPage() {
     })
   }
 
+  function addNewAuthorHandler() {
+    navigate(routes.createAuthor.path)
+  }
+
   return (
     <>
       <ProtectedRoute>
         <BaseLayout>
+        <Button 
+          className="m-2"
+          color="warning" 
+          onClick={addNewAuthorHandler}
+          >
+          Add new author
+        </Button>
         { authors.map((author: Author) => (
           <div className="py-1">
             <Card 

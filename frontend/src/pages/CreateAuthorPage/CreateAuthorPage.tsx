@@ -17,7 +17,7 @@ function CreateAuthorPage() {
 
   async function createHandler(values: CreateAuthor) {
     await request.createAuthor(values)
-    navigate(routes.home.path)
+    navigate(routes.authors.path)
   }
 
   return (

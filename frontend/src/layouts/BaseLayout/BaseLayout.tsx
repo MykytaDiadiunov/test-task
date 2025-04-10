@@ -17,22 +17,11 @@ function BaseLayout({ children }: LayoutProps) {
   useLocation().pathname == routes.login.path || 
   useLocation().pathname == routes.register.path
 
-  const isCreateBookPage = useLocation().pathname != routes.createBook.path
-  const isCreateAuthorPage = useLocation().pathname != routes.createAuthor.path
-
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>()
 
   useEffect(() => {
     setIsAuthenticated(userStore.user !== null)
   }, [userStore.user])
-
-  function addNewAuthorHandler() {
-    navigate(routes.createAuthor.path)
-  }
-
-  function addNewBookHandler() {
-    navigate(routes.createBook.path)
-  } 
 
   function goToAuthorsPageHandler() {
     navigate(routes.authors.path)
@@ -53,31 +42,13 @@ function BaseLayout({ children }: LayoutProps) {
                 </NavLink>
               </NavItem>
             }
-            { isAuthenticated && isCreateBookPage &&
+            { isAuthenticated &&
               <Button 
                 className="mx-3" 
                 color="primary" 
                 onClick={goToAuthorsPageHandler}
               >
                 Authors
-              </Button>
-            }
-            { isAuthenticated && isCreateBookPage &&
-              <Button 
-                className="mx-3" 
-                color="info" 
-                onClick={addNewBookHandler}
-              >
-                Add new book
-              </Button>
-            }
-            { isAuthenticated && isCreateAuthorPage &&
-              <Button 
-                className="mx-3"
-                color="warning" 
-                onClick={addNewAuthorHandler}
-                >
-                Add new author
               </Button>
             }
             { isAuthenticated &&

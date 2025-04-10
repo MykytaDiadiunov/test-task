@@ -34,6 +34,11 @@ function BookFilter({ filterChange }: BookFilterProps) {
     filterChange(selectedAuthorIds)
   }
 
+  function clearFilterHandler() {
+    filterChange([])
+    setSelectedAuthorIds([])
+  }
+
   return (
     <>
       <Form className="p-3 rounded-2" style={{ backgroundColor: "rgb(33, 37, 41)" }}>
@@ -53,6 +58,13 @@ function BookFilter({ filterChange }: BookFilterProps) {
         </FormGroup>
         <Button onClick={applyFilterHandler} className="w-100 mt-2">
           Apply
+        </Button>
+        <Button 
+          onClick={clearFilterHandler} 
+          className="w-100 mt-2"
+          color="danger"
+        >
+          Clear Filter
         </Button>
       </Form>
     </>

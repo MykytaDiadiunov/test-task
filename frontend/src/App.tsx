@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { routes } from '@/router'
 import { useEffect, useState } from 'react'
 import { useUserStore } from '@/store'
+import LoadingPage from './pages/LoadingPage/LoadingPage'
 
 function App() {
   const userStore = useUserStore()
@@ -27,7 +28,7 @@ function App() {
     <>
       {!isLoading ? (
         <Routes>{routeComponents}</Routes>
-      ): (<><div style={{color: "#000"}}>Loading...</div></>)}
+      ): <LoadingPage/>}
     </>
   )
 }
