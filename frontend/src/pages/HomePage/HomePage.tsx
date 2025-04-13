@@ -1,6 +1,6 @@
 import BaseLayout from '@/layouts/BaseLayout/BaseLayout'
 import BookItem from '@/components/HomePageComponents/BookItem/BookItem'
-import BookFilter from '@/components/HomePageComponents/BookItem/BookFilter'
+import BookFilter from '@/components/HomePageComponents/BookFilter/BookFilter'
 import { useEffect, useState } from 'react'
 import { requestService } from '@/services'
 import { BookFromListRespose } from '@/models'
